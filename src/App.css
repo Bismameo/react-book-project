@@ -1,3 +1,5 @@
+
+
 .App {
   text-align: center;
 }
@@ -6,6 +8,19 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+.navbar {
+  
+  background-color: #000000;
+  padding: 1rem;
+  color: rgb(5, 4, 4);
+  font-size: calc(10px + 2vmin);
+  margin-top: 0;
+  gap: 1rem;
+}
+
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

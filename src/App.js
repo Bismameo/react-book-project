@@ -1,25 +1,47 @@
 import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import Navbar from './component/navbar';
+import Carousel from './component/carousel';
+import Cards from './component/cards';
+// import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+// import AboutUs from './pages/aboutus';
+// import Service from './pages/service';
+// import Home from './pages/Home';
+import Footer from './component/footer';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    // <BrowserRouter>
+       <div className="App">
+       <div> 
+      <Navbar />
+      <Carousel />
+
+      <br/>
+      <h1>Product </h1>
+      <Cards />
+      </div>
+    <Footer/>
     </div>
   );
 }
 
-export default App;
+
+
+
+   
+    //  {<Link to="/">Home</Link>
+    // <Link to="/aboutus">AboutUs</Link>
+    // <Link to="/service">Service</Link>
+    //   <Routes>
+    //     <Route path="/" element={<Home />} />
+    //     <Route path="/aboutus" element={<AboutUs />} />
+    //     <Route path="/service" element={<Service />} />
+    //   </Routes>
+    // </BrowserRouter> }
+ 
+  
+    
+    export default App;
