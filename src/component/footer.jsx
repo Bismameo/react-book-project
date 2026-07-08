@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
     FaFacebookF,
     FaInstagram,
@@ -80,19 +81,19 @@ import {
       <>
         <style>{`
           .footer-link:hover{
-            color:#white !important;
+            color:#ffffff !important;
             transform:translateX(8px);
           }
   
           .social-icon:hover{
-            background:#black !important;
+            background:#000000 !important;
             color:#111 !important;
             transform:translateY(-8px) rotate(360deg);
           }
   
           .subscribe-btn:hover{
             transform:scale(1.05);
-            background:#white !important;
+            background:#ffffff !important;
             box-shadow:0 10px 25px hsl(0, 0%, 100%);
           }
   
@@ -108,7 +109,7 @@ import {
             bottom:-8px;
             width:60%;
             height:3px;
-            background:#white;
+            background:#ffffff;
             border-radius:10px;
           }
   
@@ -127,8 +128,7 @@ import {
             }
           }
   
-          @media(max-width:768px){
-  
+          @media(max-width:992px){
             .footer-column{
               margin-bottom:40px;
               text-align:center;
@@ -138,6 +138,26 @@ import {
               justify-content:center !important;
             }
   
+            .footer-title::after{
+              left:50%;
+              transform:translateX(-50%);
+            }
+          }
+  
+          @media(max-width:480px){
+            .footer{
+              padding: 50px 0 15px !important;
+            }
+  
+            .footer-title{
+              font-size: 1.2rem !important;
+            }
+  
+            .social-icon{
+              width: 40px !important;
+              height: 40px !important;
+              font-size: 16px !important;
+            }
           }
         `}</style>
   
@@ -163,21 +183,21 @@ import {
                 <div
                   className="d-flex gap-3 social-group mt-4"
                 >
-                  <a href="#" className="social-icon" style={styles.social}>
-                    <FaFacebookF />
-                  </a>
-  
-                  <a href="#" className="social-icon" style={styles.social}>
-                    <FaInstagram />
-                  </a>
-  
-                  <a href="#" className="social-icon" style={styles.social}>
-                    <FaTwitter />
-                  </a>
-  
-                  <a href="#" className="social-icon" style={styles.social}>
-                    <FaLinkedinIn />
-                  </a>
+                   <a href="https://facebook.com" className="social-icon" style={styles.social}>
+                     <FaFacebookF />
+                   </a>
+    
+                   <a href="https://instagram.com" className="social-icon" style={styles.social}>
+                     <FaInstagram />
+                   </a>
+    
+                   <a href="https://twitter.com" className="social-icon" style={styles.social}>
+                     <FaTwitter />
+                   </a>
+    
+                   <a href="https://linkedin.com" className="social-icon" style={styles.social}>
+                     <FaLinkedinIn />
+                   </a>
                 </div>
   
               </div>
@@ -190,25 +210,25 @@ import {
                   Quick Links
                 </h4>
   
-                <a href="#" className="footer-link" style={styles.link}>
-                  Home
-                </a>
-  
-                <a href="#" className="footer-link" style={styles.link}>
-                  Books
-                </a>
-  
-                <a href="#" className="footer-link" style={styles.link}>
-                  Categories
-                </a>
-  
-                <a href="#" className="footer-link" style={styles.link}>
-                  Best Sellers
-                </a>
-  
-                <a href="#" className="footer-link" style={styles.link}>
-                  Contact
-                </a>
+                 <Link to="/" className="footer-link" style={styles.link}>
+                   Home
+                 </Link>
+ 
+                 <Link to="/books" className="footer-link" style={styles.link}>
+                   Books
+                 </Link>
+ 
+                 <Link to="/categories" className="footer-link" style={styles.link}>
+                   Categories
+                 </Link>
+ 
+                 <Link to="/bestsellers" className="footer-link" style={styles.link}>
+                   Best Sellers
+                 </Link>
+ 
+                 <Link to="/contact" className="footer-link" style={styles.link}>
+                   Contact
+                 </Link>
   
               </div>
   
