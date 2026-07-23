@@ -14,8 +14,7 @@ import {
   export default function Footer() {
     const styles = {
       footer: {
-        background:
-          "linear-gradient(135deg,#000000,#1E293B,#000000)",
+        background: "#000000",
         color: "#fff",
         marginTop: "80px",
         padding: "70px 0 20px",
@@ -25,14 +24,16 @@ import {
         color: "#ffffff",
         fontWeight: "700",
         marginBottom: "20px",
+        fontSize: "1.25rem",
       },
   
       link: {
         display: "block",
-        color: "#ddd",
+        color: "#a1a1aa",
         textDecoration: "none",
         marginBottom: "12px",
         transition: ".3s",
+        fontSize: "0.95rem",
       },
   
       social: {
@@ -49,32 +50,30 @@ import {
       },
   
       input: {
-        borderRadius: "30px",
-        border: "none",
+        borderRadius: "8px",
+        border: "1px solid #27272a",
         padding: "12px 18px",
         width: "100%",
-        marginBottom: "15px",
+        marginBottom: "12px",
+        background: "#111111",
+        color: "#ffffff",
+        fontSize: "0.95rem",
       },
   
       button: {
         width: "100%",
-        border: "none",
-        borderRadius: "30px",
+        border: "1px solid #27272a",
+        borderRadius: "8px",
         padding: "12px",
         background: "#ffffff",
         fontWeight: "600",
         transition: ".3s",
-        color: "#111010",
+        color: "#000000",
         cursor: "pointer",
+        fontSize: "0.95rem",
       },
   
-      bottom: {
-        borderTop: "1px solid rgba(0, 0, 0, 0.2)",
-        marginTop: "40px",
-        paddingTop: "20px",
-        textAlign: "center",
-        color: "#ccc",
-      },
+      bottom: {}
     };
   
     return (
@@ -82,19 +81,19 @@ import {
         <style>{`
           .footer-link:hover{
             color:#ffffff !important;
-            transform:translateX(8px);
+            transform:translateX(6px);
           }
   
           .social-icon:hover{
-            background:#000000 !important;
-            color:#111 !important;
-            transform:translateY(-8px) rotate(360deg);
+            background:#111111 !important;
+            color:#fff !important;
+            transform:translateY(-5px) rotate(360deg);
           }
   
           .subscribe-btn:hover{
             transform:scale(1.05);
             background:#ffffff !important;
-            box-shadow:0 10px 25px hsl(0, 0%, 100%);
+            box-shadow:0 8px 20px rgba(255,255,255,0.15);
           }
   
           .footer-title{
@@ -128,6 +127,12 @@ import {
             }
           }
   
+          @media(max-width:1200px){
+            .footer-container{
+              padding: 0 20px;
+            }
+          }
+  
           @media(max-width:992px){
             .footer-column{
               margin-bottom:40px;
@@ -142,27 +147,76 @@ import {
               left:50%;
               transform:translateX(-50%);
             }
+  
+            .footer-links{
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+  
+            .footer-link{
+              text-align: center;
+            }
+          }
+  
+          @media(max-width:768px){
+            .footer{
+              padding: 50px 0 20px !important;
+            }
+  
+            .footer-title{
+              font-size: 1.15rem !important;
+            }
+  
+            .social-icon{
+              width: 42px !important;
+              height: 42px !important;
+              font-size: 16px !important;
+            }
+          }
+  
+          @media(max-width:576px){
+            .footer{
+              padding: 40px 0 16px !important;
+            }
+  
+            .footer-container{
+              padding: 0 12px;
+            }
+  
+            .footer-title{
+              font-size: 1.05rem !important;
+            }
+  
+            .footer-link{
+              font-size: 0.9rem !important;
+              margin-bottom: 10px !important;
+            }
+  
+            .social-icon{
+              width: 38px !important;
+              height: 38px !important;
+              font-size: 14px !important;
+            }
           }
   
           @media(max-width:480px){
             .footer{
-              padding: 50px 0 15px !important;
+              padding: 35px 0 12px !important;
             }
   
             .footer-title{
-              font-size: 1.2rem !important;
+              font-size: 1rem !important;
             }
   
-            .social-icon{
-              width: 40px !important;
-              height: 40px !important;
-              font-size: 16px !important;
+            .footer-bottom{
+              font-size: 0.8rem !important;
             }
           }
         `}</style>
   
         <footer className="footer" style={styles.footer}>
-          <div className="container">
+          <div className="container footer-container">
   
             <div className="row">
   
@@ -174,7 +228,7 @@ import {
                   <FaBookOpen /> BookExpress
                 </h2>
   
-                <p style={{ color: "#ddd", lineHeight: "1.8" }}>
+                <p style={{ color: "#a1a1aa", lineHeight: "1.8", fontSize: "0.95rem" }}>
                   Discover thousands of books, novels, educational
                   resources and best sellers. Reading opens the door
                   to endless possibilities.
@@ -186,15 +240,15 @@ import {
                    <a href="https://facebook.com" className="social-icon" style={styles.social}>
                      <FaFacebookF />
                    </a>
-    
+      
                    <a href="https://instagram.com" className="social-icon" style={styles.social}>
                      <FaInstagram />
                    </a>
-    
+      
                    <a href="https://twitter.com" className="social-icon" style={styles.social}>
                      <FaTwitter />
                    </a>
-    
+      
                    <a href="https://linkedin.com" className="social-icon" style={styles.social}>
                      <FaLinkedinIn />
                    </a>
@@ -204,7 +258,7 @@ import {
   
               {/* Quick Links */}
   
-              <div className="col-lg-2 footer-column">
+              <div className="col-lg-2 footer-column footer-links">
   
                 <h4 className="footer-title" style={styles.title}>
                   Quick Links
@@ -213,19 +267,19 @@ import {
                  <Link to="/" className="footer-link" style={styles.link}>
                    Home
                  </Link>
- 
+            
                  <Link to="/books" className="footer-link" style={styles.link}>
                    Books
                  </Link>
- 
+            
                  <Link to="/categories" className="footer-link" style={styles.link}>
                    Categories
                  </Link>
- 
+            
                  <Link to="/bestsellers" className="footer-link" style={styles.link}>
                    Best Sellers
                  </Link>
- 
+            
                  <Link to="/contact" className="footer-link" style={styles.link}>
                    Contact
                  </Link>
@@ -240,16 +294,16 @@ import {
                   Contact
                 </h4>
   
-                <p>
+                <p style={{ fontSize: "0.95rem", color: "#a1a1aa", marginBottom: "8px" }}>
                   <FaMapMarkerAlt color="#fffef9" /> Karachi,
                   Pakistan
                 </p>
   
-                <p>
+                <p style={{ fontSize: "0.95rem", color: "#a1a1aa", marginBottom: "8px" }}>
                   <FaPhoneAlt color="#f1f0e8" /> +92 300 1234567
                 </p>
   
-                <p>
+                <p style={{ fontSize: "0.95rem", color: "#a1a1aa", marginBottom: "0" }}>
                   <FaEnvelope color="#f5f3f3" /> info@bookexpress.com
                 </p>
   
@@ -263,7 +317,7 @@ import {
                   Newsletter
                 </h4>
   
-                <p style={{ color: "#ddd" }}>
+                <p style={{ color: "#a1a1aa", fontSize: "0.95rem", marginBottom: "15px" }}>
                   Subscribe to receive the latest book offers.
                 </p>
   
@@ -282,9 +336,6 @@ import {
   
               </div>
   
-            </div>
-  
-            <div style={styles.bottom}>
             </div>
   
           </div>

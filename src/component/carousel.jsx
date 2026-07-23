@@ -3,6 +3,7 @@ export default function Carousel() {
       carouselImg: {
         height: "90vh",
         objectFit: "cover",
+        maxHeight: "900px",
       },
    
       overlay: {
@@ -40,6 +41,7 @@ export default function Carousel() {
         fontSize: "4rem",
         fontWeight: "700",
         marginBottom: "20px",
+        lineHeight: "1.1",
       },
    
       paragraph: {
@@ -50,24 +52,26 @@ export default function Carousel() {
       },
    
       darkBtn: {
-        background: "#222325",
+        background: "#000000",
         color: "#fff",
-        border: "none",
+        border: "1px solid #27272a",
         borderRadius: "30px",
         padding: "12px 30px",
         marginRight: "15px",
         transition: "0.3s",
         cursor: "pointer",
+        fontWeight: "500",
       },
    
       lightBtn: {
         background: "transparent",
         color: "#fff",
-        border: "2px solid #fff",
+        border: "1px solid #fff",
         borderRadius: "30px",
         padding: "12px 30px",
         transition: "0.3s",
         cursor: "pointer",
+        fontWeight: "500",
       },
    
       yellowBtn: {
@@ -77,19 +81,21 @@ export default function Carousel() {
         borderRadius: "30px",
         padding: "12px 30px",
         cursor: "pointer",
+        fontWeight: "600",
       },
    
       blueBtn: {
-        background: "#0d6efd",
+        background: "#3B82F6",
         color: "#fff",
         border: "none",
         borderRadius: "30px",
         padding: "12px 30px",
         cursor: "pointer",
+        fontWeight: "600",
       },
    
       icon: {
-        backgroundColor: "rgba(255,255,255,.35)",
+        backgroundColor: "rgba(0,0,0,0.4)",
         borderRadius: "50%",
         padding: "22px",
       },
@@ -113,11 +119,29 @@ export default function Carousel() {
    
             .carousel-item{
               position:relative;
+              box-shadow: inset 0 -20px 30px -10px rgba(0,0,0,0.4);
             }
    
             .btn-hover:hover{
               transform:translateY(-4px);
               transition:.3s;
+              box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            }
+   
+            @media(max-width:1400px){
+              .custom-caption{
+                width:50% !important;
+              }
+            }
+   
+            @media(max-width:1200px){
+              .custom-caption{
+                width:55% !important;
+              }
+   
+              .custom-caption h1{
+                font-size:3rem !important;
+              }
             }
    
             @media(max-width:992px){
@@ -127,82 +151,123 @@ export default function Carousel() {
                 bottom:15% !important;
                 text-align:center !important;
               }
-   
+
               .custom-caption h1{
                 font-size:2.4rem !important;
               }
-   
+
               .custom-caption p{
                 font-size:16px !important;
               }
-   
+
               .carousel-img{
                 height:70vh !important;
+                max-height: 700px !important;
               }
-   
+
               .btn-hover{
-                margin:5px !important;
-                padding:10px 20px !important;
-                font-size:14px !important;
+                display: block !important;
+                width: 100% !important;
+                margin: 6px 0 !important;
+                padding: 10px !important;
+                font-size: 13px !important;
+                text-align: center !important;
               }
             }
-   
+
             @media(max-width:768px){
               .custom-caption{
                 width:90% !important;
                 left:5% !important;
                 bottom:12% !important;
+                padding-top: 10px !important;
               }
-   
+
               .custom-caption h1{
                 font-size:2rem !important;
               }
-   
+
               .custom-caption p{
-                font-size:15px !important;
+                font-size:14px !important;
               }
-   
+
               .carousel-img{
                 height:60vh !important;
+                max-height: 600px !important;
               }
-   
+
               .btn-hover{
-                margin:4px !important;
-                padding:8px 16px !important;
-                font-size:13px !important;
+                margin: 5px 0 !important;
+                padding: 9px !important;
+                font-size: 12px !important;
               }
             }
-   
-            @media(max-width:480px){
+
+            @media(max-width:576px){
               .custom-caption{
                 width:95% !important;
                 left:2.5% !important;
                 bottom:10% !important;
+                padding-top: 15px !important;
               }
-   
+
               .custom-caption h1{
                 font-size:1.6rem !important;
               }
-   
+
               .custom-caption p{
-                font-size:13px !important;
-                margin-bottom:20px !important;
-              }
-   
-              .carousel-img{
-                height:50vh !important;
-              }
-   
-              .btn-hover{
-                display:block !important;
-                width:100% !important;
-                margin:5px 0 !important;
-                padding:10px !important;
                 font-size:12px !important;
+                margin-bottom:18px !important;
               }
-   
+
+              .carousel-img{
+                height:55vh !important;
+                max-height: 450px !important;
+              }
+
+              .btn-hover{
+                margin: 4px 0 !important;
+                padding: 10px !important;
+                font-size: 11px !important;
+              }
+
               .carousel-control-prev,
               .carousel-control-next{
+                display:none !important;
+              }
+            }
+
+            @media(max-width:380px){
+              .custom-caption{
+                width:96% !important;
+                left:2% !important;
+                bottom:6% !important;
+                padding-top: 20px !important;
+              }
+
+              .custom-caption h1{
+                font-size:1.3rem !important;
+              }
+
+              .custom-caption p{
+                font-size:11px !important;
+                margin-bottom:12px !important;
+              }
+
+              .carousel-img{
+                height:50vh !important;
+                max-height: 350px !important;
+              }
+
+              .btn-hover{
+                margin: 3px 0 !important;
+                padding: 9px !important;
+                font-size: 10px !important;
+              }
+            }
+
+            @media(max-width:768px){
+              .carousel-badge{
                 display:none !important;
               }
             }
@@ -231,7 +296,7 @@ export default function Carousel() {
                 className="carousel-caption custom-caption"
                 style={styles.caption}
               >
-                <span style={styles.badge}>New Collection</span>
+                <span className="carousel-badge" style={styles.badge}>New Collection</span>
    
                 <h1 style={styles.heading}>
                   Discover Your Next Favorite Book

@@ -1,287 +1,443 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-export default function Navbar() {
+import { FaShoppingCart, FaSearch } from "react-icons/fa";
+export default function Navbar({ cartItems = [] }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
 
   return (
     <>
-      <style>{`
-        /* ===== NAVBAR ===== */
+   <style>{`
+.black-nav {
+  background: #000000;
+  border-bottom: 1px solid #111111;
+  padding: 0 40px;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 6px 30px rgba(255, 255, 255, 0.15), 0 2px 8px rgba(255, 255, 255, 0.08);
+}
 
-        .custom-navbar{
-          background:linear-gradient(90deg,#0F172A,#1E3A8A,#3B82F6);
-          padding:15px 30px;
-          position:sticky;
-          top:0;
-          z-index:999;
-          box-shadow:0 8px 25px rgba(0,0,0,.35);
-          animation:slideDown .8s ease;
-        }
+.black-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
 
-        /* Logo */
+.black-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
 
-        .navbar-brand{
-          color:white !important;
-          font-size:30px;
-          font-weight:700;
-          letter-spacing:1px;
-          transition:.4s;
-        }
+.black-logo {
+  color: #ffffff !important;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
 
-        .navbar-brand:hover{
-          color:#3B82F6 !important;
-          transform:scale(1.08);
-          text-shadow:0 0 15px rgba(34, 35, 37, 0.5);
-        }
+.black-logo:hover {
+  opacity: 0.75;
+}
 
-        /* Nav Links */
+.black-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 
-        .nav-link{
-          color:white !important;
-          font-size:17px;
-          font-weight:500;
-          margin:0 12px;
-          position:relative;
-          transition:.35s;
-        }
+.black-link {
+  color: #a1a1aa !important;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
 
-        .nav-link::after{
-          content:"";
-          position:absolute;
-          left:50%;
-          bottom:-6px;
-          transform:translateX(-50%);
-          width:0;
-          height:3px;
-          background:#3B82F6;
-          border-radius:20px;
-          transition:.35s;
-        }
+.black-link:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.06);
+}
 
-        .nav-link:hover::after{
-          width:100%;
-        }
+.black-link.active {
+  color: #ffffff !important;
+  font-weight: 600;
+}
 
-        .nav-link:hover{
-          color:#60A5FA !important;
-          transform:translateY(-3px);
-        }
+.black-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
 
-        .nav-link.active{
-          color:#3B82F6 !important;
-        }
+.black-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
-        .nav-link.active::after{
-          width:100%;
-        }
+.black-search input {
+  width: 260px;
+  height: 38px;
+  padding: 0 14px 0 38px;
+  background: #111111;
+  border: 1px solid #27272a;
+  border-radius: 8px 0 0 8px;
+  color: #ffffff;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
 
-        /* Search */
+.black-search input::placeholder {
+  color: #71717a;
+}
 
-        .search-input{
-          width:240px;
-          border-radius:30px;
-          border:none;
-          padding:10px 18px;
-          transition:.35s;
-        }
+.black-search input:focus {
+  outline: none;
+  background: #0a0a0a;
+  border-color: #3f3f46;
+  width: 280px;
+}
 
-        .search-input:focus{
-          box-shadow:0 0 20px rgba(59,130,246,0.5);
-          transform:scale(1.04);
-          outline:none;
-        }
+.black-search-icon {
+  position: absolute;
+  left: 13px;
+  color: #71717a;
+  font-size: 13px;
+  pointer-events: none;
+}
 
-        /* Search Button */
+.black-cart {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #111111;
+  border: 1px solid #27272a;
+  color: #a1a1aa;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  flex-shrink: 0;
+}
 
-        .search-btn{
-          border:none;
-          background:#1E3A8A;
-          color:white;
-          border-radius:30px;
-          padding:10px 22px;
-          transition:.35s;
-          font-weight:600;
-        }
+.black-cart:hover {
+  background: #1a1a1a;
+  border-color: #3f3f46;
+  color: #ffffff;
+}
 
-        .search-btn:hover{
-          background:#3B82F6;
-          transform:translateY(-3px);
-          box-shadow:0 10px 20px rgba(59,130,246,0.4);
-        }
+.black-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ffffff;
+  color: #000000;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000000;
+}
 
-        /* Toggler */
+.black-toggler {
+  border: 1px solid #27272a;
+  background: #111111;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #a1a1aa;
+  transition: all 0.15s ease;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
 
-        .navbar-toggler{
-          background:white;
-          border:none;
-          transition:.35s;
-        }
+.black-toggler:hover {
+  background: #1a1a1a;
+  color: #ffffff;
+}
 
-        .navbar-toggler:hover{
-          transform:rotate(90deg);
-        }
+.black-toggler:focus {
+  box-shadow: none;
+  outline: none;
+}
 
-        .navbar-toggler-icon{
-          background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280F%2C 17%2C 42%2C 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
+.black-toggler-icon {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #a1a1aa;
+  border-radius: 1px;
+  position: relative;
+  transition: all 0.3s ease;
+}
 
-        /* Mobile */
+.black-toggler-icon::before,
+.black-toggler-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #a1a1aa;
+  border-radius: 1px;
+  transition: all 0.3s ease;
+}
 
-        @media(max-width:992px){
+.black-toggler-icon::before {
+  top: -7px;
+}
 
-          .navbar-collapse{
-            margin-top:20px;
-            background:rgba(255,255,255,.08);
-            backdrop-filter:blur(12px);
-            padding:20px;
-            border-radius:15px;
-            animation:fadeIn .5s;
-          }
-           
+.black-toggler-icon::after {
+  top: 7px;
+}
 
-          .nav-item{
-            margin:12px 0;
-            text-align:center;
-          }
+.black-search-btn {
+  height: 38px;
+  padding: 0 18px;
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #27272a;
+  border-radius: 0 8px 8px 0;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
 
-          .search-input{
-            width:100%;
-            margin-bottom:12px;
-          }
+.black-search-btn:hover {
+  background: #111111;
+  border-color: #3f3f46;
+}
 
-          form{
-            display:flex;
-            flex-direction:column;
-          }
+@media (max-width: 1024px) {
+  .black-nav {
+    padding: 0 24px;
+  }
 
-          .search-btn{
-            width:100%;
-          }
+  .black-wrap {
+    gap: 20px;
+  }
 
-        }
+  .black-search input {
+    width: 200px;
+  }
 
-        /* Animations */
+  .black-search input:focus {
+    width: 220px;
+  }
 
-        @keyframes slideDown{
+  .black-link {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
 
-          from{
-            opacity:0;
-            transform:translateY(-80px);
-          }
+@media (max-width: 991px) {
+  .black-nav {
+    height: auto;
+    padding: 14px 24px;
+  }
 
-          to{
-            opacity:1;
-            transform:translateY(0);
-          }
+  .black-wrap {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
 
-        }
+  .black-logo {
+    order: 1;
+  }
 
-        @keyframes fadeIn{
+  .black-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    order: 3;
+  }
 
-          from{
-            opacity:0;
-            transform:translateY(-20px);
-          }
+  .black-links.show {
+    display: flex;
+  }
 
-          to{
-            opacity:1;
-            transform:translateY(0);
-          }
+  .black-link {
+    width: 100%;
+    text-align: left;
+    padding: 10px 14px;
+  }
 
-        }
+  .black-section {
+    display: block;
+    width: 100%;
+    order: 3;
+  }
 
-        @media(max-width:480px){
-          .navbar-brand{
-            font-size:22px;
-          }
-          .search-input{
-            width:100%;
-          }
-          .nav-link{
-            font-size:16px;
-            margin:8px 0;
-          }
-        }
+  .black-right {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    order: 2;
+  }
 
-      `}</style>
+  .black-right.show {
+    display: flex;
+  }
 
-      <nav className="navbar navbar-expand-lg custom-navbar">
-        <div className="container-fluid">
+  .black-cart {
+    align-self: flex-end;
+  }
 
-          <Link className="navbar-brand" to="/" onClick={closeMenu}>
-          BookExpress
+  .black-search {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .black-search input {
+    border-radius: 8px;
+    width: 100%;
+    height: 40px;
+  }
+
+  .black-search input:focus {
+    width: 100%;
+  }
+
+  .black-search-btn {
+    width: 100%;
+    border-radius: 8px;
+    height: 40px;
+  }
+
+  .black-toggler {
+    display: flex;
+    order: 2;
+    width: fit-content;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .black-nav {
+    padding: 12px 16px;
+  }
+
+  .black-wrap {
+    gap: 10px;
+    padding: 0 12px;
+  }
+
+  .black-logo {
+    font-size: 18px;
+  }
+
+  .black-search input {
+    font-size: 13px;
+    height: 36px;
+  }
+
+  .black-cart {
+    width: 36px;
+    height: 36px;
+  }
+
+  .black-badge {
+    min-width: 16px;
+    height: 16px;
+    font-size: 9px;
+  }
+}
+`}</style>
+
+      <nav className="black-nav">
+        <div className="black-wrap">
+
+          <Link className="black-logo" to="/" onClick={closeMenu}>
+            BookExpress
           </Link>
 
+          <div className="black-section">
+            <div className={`black-links${menuOpen ? ' show' : ''}`}>
+
+              <Link className="black-link active" to="/" onClick={closeMenu}>
+                Home
+              </Link>
+
+              <Link className="black-link" to="/books" onClick={closeMenu}>
+                Books
+              </Link>
+
+              <Link className="black-link" to="/categories" onClick={closeMenu}>
+                Categories
+              </Link>
+
+              <Link className="black-link" to="/bestsellers" onClick={closeMenu}>
+                Best Sellers
+              </Link>
+
+              <Link className="black-link" to="/contact" onClick={closeMenu}>
+                Contact
+              </Link>
+
+            </div>
+
+            <div className={`black-right${menuOpen ? ' show' : ''}`}>
+
+              <form className="black-search" onSubmit={(e) => e.preventDefault()}>
+                <FaSearch className="black-search-icon" />
+                <input
+                  type="search"
+                  placeholder="Search books..."
+                />
+                <button className="black-search-btn" type="submit">Search</button>
+              </form>
+
+              <Link className="black-cart" to="/cart">
+                <FaShoppingCart size={16} />
+                <span className="black-badge">
+                  {cartItems.length}
+                </span>
+              </Link>
+
+            </div>
+          </div>
+
           <button
-            className="navbar-toggler"
+            className="navbar-toggler black-toggler"
             type="button"
-            aria-controls="navbarTogglerDemo01"
             aria-expanded={menuOpen}
             aria-label="Toggle navigation"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon black-toggler-icon"></span>
           </button>
-
-          <div
-            className={`collapse navbar-collapse${menuOpen ? ' show' : ''}`}
-            id="navbarTogglerDemo01"
-          >
-
-            <ul className="navbar-nav mx-auto">
-
-              <li className="nav-item">
-                <Link className="nav-link active" to="/" onClick={closeMenu}>
-                  Home
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link" to="/books" onClick={closeMenu}>
-                  Books
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link" to="/categories" onClick={closeMenu}>
-                  Categories
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link" to="/bestsellers" onClick={closeMenu}>
-                  Best Sellers
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link" to="/contact" onClick={closeMenu}>
-                  Contact
-                </Link>
-              </li>
-
-            </ul>
-
-            <form className="d-flex">
-
-              <input
-                className="form-control me-2 search-input"
-                type="search"
-                placeholder="Search Books..."
-              />
-
-              <button
-                className="btn search-btn"
-                type="submit"
-              >
-                Search
-              </button>
-
-            </form>
-
-          </div>
 
         </div>
       </nav>
