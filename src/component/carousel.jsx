@@ -284,7 +284,7 @@ export default function Carousel() {
             {/* Slide 1 */}
             <div className="carousel-item active">
               <img
-                src="/assets/image2.jpg"
+                src="/Assets/image2.jpg"
                 className="d-block w-100 carousel-img"
                 style={styles.carouselImg}
                 alt="Books"
@@ -326,7 +326,7 @@ export default function Carousel() {
             {/* Slide 2 */}
             <div className="carousel-item">
               <img
-                src="/assets/image1.jpg"
+                src="/Assets/image1.jpg"
                 className="d-block w-100 carousel-img"
                 style={styles.carouselImg}
                 alt="Library"
@@ -356,7 +356,7 @@ export default function Carousel() {
             {/* Slide 3 */}
             <div className="carousel-item">
               <img
-                src="/assets/image3.jpg"
+                src="/Assets/image3.jpg"
                 className="d-block w-100 carousel-img"
                 style={styles.carouselImg}
                 alt="Reading"
