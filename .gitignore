@@ -2,17 +2,23 @@
 
 # dependencies
 /node_modules
+**/node_modules/
+**/build/
+/my-app/
 /.pnp
 .pnp.js
 
 # testing
 /coverage
+/server/data/users.json
+/server/data/users.json.tmp
 
 # production
 /build
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local

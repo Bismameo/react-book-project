@@ -13,6 +13,7 @@ export default function Carousel() {
         width: "100%",
         height: "100%",
         background: "rgba(0,0,0,0.55)",
+        zIndex: 1,
       },
    
       caption: {
@@ -23,7 +24,7 @@ export default function Carousel() {
         textAlign: "left",
         color: "#fff",
         animation: "fadeUp 1s ease",
-        zIndex: 2,
+        zIndex: 3,
       },
    
       badge: {
@@ -51,7 +52,7 @@ export default function Carousel() {
         marginBottom: "30px",
       },
    
-      darkBtn: {
+darkBtn: {
         background: "#000000",
         color: "#fff",
         border: "1px solid #27272a",
@@ -61,8 +62,10 @@ export default function Carousel() {
         transition: "0.3s",
         cursor: "pointer",
         fontWeight: "500",
+        touchAction: "manipulation",
+        minHeight: "48px",
       },
-   
+
       lightBtn: {
         background: "transparent",
         color: "#fff",
@@ -72,8 +75,10 @@ export default function Carousel() {
         transition: "0.3s",
         cursor: "pointer",
         fontWeight: "500",
+        touchAction: "manipulation",
+        minHeight: "48px",
       },
-   
+
       yellowBtn: {
         background: "#ffc107",
         color: "#000",
@@ -82,8 +87,10 @@ export default function Carousel() {
         padding: "12px 30px",
         cursor: "pointer",
         fontWeight: "600",
+        touchAction: "manipulation",
+        minHeight: "48px",
       },
-   
+
       blueBtn: {
         background: "#3B82F6",
         color: "#fff",
@@ -92,6 +99,8 @@ export default function Carousel() {
         padding: "12px 30px",
         cursor: "pointer",
         fontWeight: "600",
+        touchAction: "manipulation",
+        minHeight: "48px",
       },
    
       icon: {
@@ -168,10 +177,14 @@ export default function Carousel() {
               .btn-hover{
                 display: block !important;
                 width: 100% !important;
-                margin: 6px 0 !important;
-                padding: 10px !important;
-                font-size: 13px !important;
+                margin: 8px 0 !important;
+                padding: 14px 16px !important;
+                font-size: 14px !important;
                 text-align: center !important;
+                min-height: 48px !important;
+                touch-action: manipulation !important;
+                z-index: 3 !important;
+                position: relative !important;
               }
             }
 
@@ -184,7 +197,7 @@ export default function Carousel() {
               }
 
               .custom-caption h1{
-                font-size:2rem !important;
+                font-size:2.5rem !important;
               }
 
               .custom-caption p{
@@ -198,8 +211,12 @@ export default function Carousel() {
 
               .btn-hover{
                 margin: 5px 0 !important;
-                padding: 9px !important;
-                font-size: 12px !important;
+                padding: 14px 16px !important;
+                font-size: 13px !important;
+                min-height: 48px !important;
+                touch-action: manipulation !important;
+                z-index: 3 !important;
+                position: relative !important;
               }
             }
 
@@ -212,7 +229,7 @@ export default function Carousel() {
               }
 
               .custom-caption h1{
-                font-size:1.6rem !important;
+                font-size:2.2rem !important;
               }
 
               .custom-caption p{
@@ -227,8 +244,12 @@ export default function Carousel() {
 
               .btn-hover{
                 margin: 4px 0 !important;
-                padding: 10px !important;
-                font-size: 11px !important;
+                padding: 14px 16px !important;
+                font-size: 12px !important;
+                min-height: 48px !important;
+                touch-action: manipulation !important;
+                z-index: 3 !important;
+                position: relative !important;
               }
 
               .carousel-control-prev,
@@ -246,7 +267,7 @@ export default function Carousel() {
               }
 
               .custom-caption h1{
-                font-size:1.3rem !important;
+                font-size:1.8rem !important;
               }
 
               .custom-caption p{
@@ -261,8 +282,12 @@ export default function Carousel() {
 
               .btn-hover{
                 margin: 3px 0 !important;
-                padding: 9px !important;
-                font-size: 10px !important;
+                padding: 14px 16px !important;
+                font-size: 11px !important;
+                min-height: 48px !important;
+                touch-action: manipulation !important;
+                z-index: 3 !important;
+                position: relative !important;
               }
             }
 

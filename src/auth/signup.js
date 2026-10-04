@@ -10,25 +10,31 @@ export default function Signup() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     if (password !== confirm) {
       setError("Passwords do not match");
       return;
     }
-    if (password.length < 6) {
-      setError("Password must be at least 6 characters");
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters");
       return;
     }
-    const result = signup({ name, email, password });
-    if (result.success) {
-      navigate("/", { replace: true });
-    } else {
-      setError(result.error);
+    setIsSubmitting(true);
+    try {
+      const result = await signup({ name, email, password });
+      if (result.success) {
+        navigate("/", { replace: true });
+      } else {
+        setError(result.error);
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -98,7 +104,14 @@ export default function Signup() {
             Sign up to start shopping and track your orders.
           </p>
 
-          {error && <div className="auth-error mb-3">{error}</div>}
+          {error && (
+            <div className="auth-error mb-3" role="alert">
+              {error}
+              {error === "Email already registered." && (
+                <> <Link to="/login" style={{ color: "#3B82F6" }}>Log in instead</Link>.</>
+              )}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
@@ -160,8 +173,8 @@ export default function Signup() {
               </button>
             </div>
 
-            <button type="submit" className="auth-btn mb-3">
-              Sign Up
+            <button type="submit" className="auth-btn mb-3" disabled={isSubmitting}>
+              {isSubmitting ? "Creating account..." : "Sign Up"}
             </button>
           </form>
 

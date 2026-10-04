@@ -8,20 +8,26 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from || "/";
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    const result = login(email, password);
-    if (result.success) {
-      navigate(from, { replace: true });
-    } else {
-      setError(result.error);
+    setIsSubmitting(true);
+    try {
+      const result = await login(email, password);
+      if (result.success) {
+        navigate(from, { replace: true });
+      } else {
+        setError(result.error);
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -91,6 +97,9 @@ export default function Login() {
             Login to access your cart and orders.
           </p>
 
+          {location.state?.message && (
+            <div className="text-success mb-3" role="status">{location.state.message}</div>
+          )}
           {error && <div className="auth-error mb-3">{error}</div>}
 
           <form onSubmit={handleSubmit}>
@@ -125,16 +134,14 @@ export default function Login() {
             </div>
 
             <div className="mb-3 d-flex justify-content-between align-items-center">
-              <label className="d-flex align-items-center gap-2" style={{ fontSize: "clamp(0.8rem, 1.4vw, 0.85rem)", color: "#334155", cursor: "pointer" }}>
-                <input type="checkbox" onChange={(e) => setShowPassword(e.target.checked)} /> Remember me
-              </label>
-              <Link to="/login" style={{ color: "#3B82F6", fontSize: "clamp(0.8rem, 1.4vw, 0.85rem)" }}>
+              <span />
+              <Link to="/forgot-password" style={{ color: "#3B82F6", fontSize: "clamp(0.8rem, 1.4vw, 0.85rem)" }}>
                 Forgot password?
               </Link>
             </div>
 
-            <button type="submit" className="auth-btn mb-3">
-              Login
+            <button type="submit" className="auth-btn mb-3" disabled={isSubmitting}>
+              {isSubmitting ? "Signing in..." : "Login"}
             </button>
           </form>
 
